@@ -5,6 +5,7 @@ import time
 #flp.print_number_str("3.141")
 #flp.show()
 
+'''
 #call to openweather API
 ploads = {'q': 'Astoria', 'units': 'imperial', 'appid': 'ae8a8ba77b3d70d40c434468ae4b88eb'}
 r = requests.get('https://api.openweathermap.org/data/2.5/weather', params=ploads)
@@ -18,6 +19,8 @@ print(data)
 #extract feels like temp
 current_temp = round(int(data["main"]["feels_like"]), 1)
 print(current_temp)
+
+'''
 
 '''
 #min temp
@@ -39,10 +42,14 @@ flp.show()
 
 while True:
 	flp.clear()
+	ploads = {'q': 'Long Island City', 'units': 'imperial', 'appid': 'ae8a8ba77b3d70d40c434468ae4b88eb'}
+	r = requests.get('https://api.openweathermap.org/data/2.5/weather', params=ploads)
+	data = r.json()
+	current_temp = round(int(data["main"]["feels_like"]), 1)
 	str_current_temp = "%s F" %(current_temp)
 	flp.print_number_str(str_current_temp)
 	flp.show()
-	time.sleep(1800)
+	time.sleep(900)
 
 
 '''
