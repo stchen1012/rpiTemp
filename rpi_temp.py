@@ -1,5 +1,6 @@
-#import fourletterphat as flp 
+import fourletterphat as flp 
 import requests
+import time
 
 #flp.print_number_str("3.141")
 #flp.show()
@@ -18,6 +19,7 @@ print(data)
 current_temp = round(int(data["main"]["feels_like"]), 1)
 print(current_temp)
 
+'''
 #min temp
 temp_min = round(int(data["main"]["temp_min"]), 1)
 print(temp_min)
@@ -25,8 +27,52 @@ print(temp_min)
 #max temp
 temp_max = round(int(data["main"]["temp_max"]), 1)
 print(temp_max)
-
+'''
 
 #formatted temp
+
+'''
 print("%s F" %(current_temp))
-#flp.show("%s F" %(current_temp))
+flp.print_number_str("%s F" %(current_temp))
+flp.show()
+'''
+
+while True:
+	flp.clear()
+	str_current_temp = "%s F" %(current_temp)
+	flp.print_number_str(str_current_temp)
+	flp.show()
+	time.sleep(1800)
+
+
+'''
+#Auto start .py file on rPi boot
+[Unit]
+Description=My service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u flp.py
+WorkingDirectory=/home/pi         
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+'''
+
+'''
+#commands to start test service
+sudo systemctl start  myscript.service
+
+#stop
+sudo systemctl stop test myscript.service
+
+#enable script
+sudo systemctl enable  myscript.service
+
+#website
+raspberrypi.org/documentation/linux/usage/systemd.md
+'''
