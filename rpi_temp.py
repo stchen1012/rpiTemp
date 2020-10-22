@@ -46,7 +46,30 @@ while True:
 	r = requests.get('https://api.openweathermap.org/data/2.5/weather', params=ploads)
 	data = r.json()
 	current_temp = round(int(data["main"]["feels_like"]), 1)
-	str_current_temp = "%s F" %(current_temp)
+	current_condition = (data["weather"][0]["main"])
+	print(current_condition)
+	if current_condition in ("Thunderstorm", "Drizzle", "Rain"):
+        current_condition = "R"
+	elif current_condition == "Clear": #sunny
+		current_condition = "S"
+	elif current_condition == "Snow":
+		current_condition = "S."
+	elif current_condition == "Clouds":
+		current_condition = "C"
+    elif current_condition == "Mist":
+        current_condition = "M"
+    elif current_condition == "Clouds":
+        current_condition = "C"
+    elif current_condition in ("Haze", "Fog"):
+        current_condition = "H"
+    elif current_condition in ("Dust"):
+        current_condition = "D"
+    elif current_condition in ("Tornado"):
+        current_condition = "T"
+	else: 
+		current condition = "F" #Farenheit default
+	#str_current_temp = "%s F" %(current_temp)
+	str_current_temp = "%s %s" %(current_temp, current_condition)
 	flp.print_number_str(str_current_temp)
 	flp.show()
 	time.sleep(900)
